@@ -101,7 +101,15 @@ def check_valid(bo , num , pos) :
 
 
 
+# Function to check the Validity of the Initial Board
+def check_ini_valid(bo) :
+    for i in range(len(bo)) :
+        for j in range(len(bo[0])) :
+            if bo[i][j] != 0 :
+                if not check_valid(bo, bo[i][j], (i,j)) :
+                    return False
 
+    return True
 
 
 
@@ -163,6 +171,13 @@ def drive() :
     while True :
         if get_board() :
             break
+
+
+    # Check if the Given Board is Valid
+    if not check_ini_valid(board):
+        print("\nSorry , This is not a valid Sudoku Board !!\n")
+        return
+
 
     print("\nInput Board\n")
     display_board(board)
